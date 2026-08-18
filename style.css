@@ -463,3 +463,11 @@ nav a {
     margin-bottom: 45px;
   }
 }
+
+/* Mobile header fix */
+@media (max-width: 900px) {
+  header {
+    position: absolute;
+    top: 0;
+  }
+}
