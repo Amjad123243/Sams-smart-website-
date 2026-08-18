@@ -471,3 +471,17 @@ nav a {
     top: 0;
   }
 }
+
+/* Website logo */
+.nav-logo img {
+  display: block;
+  width: 220px;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .nav-logo img {
+    width: 170px;
+  }
+}
