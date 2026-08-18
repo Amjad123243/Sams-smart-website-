@@ -2,32 +2,16 @@ const powerButton = document.getElementById("powerButton");
 const intro = document.getElementById("intro");
 const website = document.getElementById("website");
 
-function playWelcomeVoice() {
-  const welcome = new SpeechSynthesisUtterance(
-    "Welcome home... The future starts now."
-  );
-
-  welcome.lang = "en-US";
-  welcome.rate = 0.82;
-  welcome.pitch = 1;
-  welcome.volume = 1;
-
-  const voices = window.speechSynthesis.getVoices();
-
-  welcome.voice =
-    voices.find(voice =>
-      voice.lang.startsWith("en") &&
-      /Samantha|Ava|Serena|Karen/i.test(voice.name)
-    ) ||
-    voices.find(voice => voice.lang.startsWith("en")) ||
-    null;
-
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(welcome);
-}
+const welcomeAudio = new Audio("./welcome.mp3");
+welcomeAudio.preload = "auto";
+welcomeAudio.volume = 1;
 
 powerButton.addEventListener("click", () => {
-  playWelcomeVoice();
+  welcomeAudio.currentTime = 0;
+  welcomeAudio.play().catch(error => {
+    console.log("Audio could not play:", error);
+  });
+
   intro.classList.add("active");
 
   setTimeout(() => {
