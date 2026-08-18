@@ -485,3 +485,39 @@ nav a {
     width: 170px;
   }
 }
+
+/* Smooth transition from intro to website */
+#intro {
+  opacity: 1;
+  transition: opacity 1.5s cubic-bezier(.22, .61, .36, 1);
+  will-change: opacity;
+}
+
+#intro.leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#intro .room {
+  transition:
+    transform 3.4s ease,
+    filter 1.5s ease,
+    opacity 1.5s ease;
+}
+
+#intro.leaving .room {
+  transform: scale(1.1);
+  filter: blur(2px);
+  opacity: 0.2;
+}
+
+#website {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s ease;
+}
+
+#website.visible {
+  opacity: 1;
+  visibility: visible;
+}
