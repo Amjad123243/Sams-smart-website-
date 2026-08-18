@@ -241,3 +241,46 @@ nav a {
     font-size: 50px;
   }
 }
+
+/* Clean curtain opening */
+.room-content {
+  display: none;
+}
+
+.curtain-right {
+  background-position: 36px 0;
+}
+
+/* Premium power switch */
+#powerButton {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 1px solid rgba(20,20,20,.18);
+  background: rgba(255,255,255,.78);
+  color: #171717;
+  box-shadow:
+    0 12px 35px rgba(0,0,0,.22),
+    inset 0 0 18px rgba(255,255,255,.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.power-text {
+  margin-top: 14px;
+  padding: 9px 16px;
+  color: #171717;
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(20,20,20,.1);
+  border-radius: 30px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.power-text span {
+  color: #292929;
+  opacity: 1;
+  font-size: 12px;
+  font-weight: 600;
+}
