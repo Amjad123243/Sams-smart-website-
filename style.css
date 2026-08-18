@@ -58,7 +58,7 @@ body {
   top: 0;
   width: 51%;
   height: 100%;
-  background: linear-gradient(90deg, #050505, #181818, #050505);
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,.92) 0px, rgba(255,255,255,.58) 14px, rgba(190,190,190,.38) 28px, rgba(255,255,255,.82) 43px, rgba(210,210,210,.42) 57px, rgba(255,255,255,.92) 72px);
   z-index: 10;
   transition: transform 2.2s cubic-bezier(.77,0,.18,1);
 }
@@ -78,6 +78,7 @@ body {
   transform: translate(-50%, -50%);
   z-index: 20;
   text-align: center;
+  color: #171717;
   transition: opacity .7s ease, transform .7s ease;
 }
 
