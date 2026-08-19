@@ -990,3 +990,41 @@ nav a {
     right: 15px;
   }
 }
+
+/* =========================
+   SCROLL REVEAL ANIMATION
+========================= */
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(55px);
+  transition:
+    opacity .9s ease,
+    transform .9s cubic-bezier(.2,.7,.2,1);
+  will-change: opacity, transform;
+}
+
+.reveal-item.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: .12s;
+}
+
+.reveal-delay-2 {
+  transition-delay: .24s;
+}
+
+.reveal-delay-3 {
+  transition-delay: .36s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
