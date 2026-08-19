@@ -1028,3 +1028,58 @@ nav a {
     transition: none;
   }
 }
+
+/* REAL SMART ROOM DETAILS */
+
+/* Curtains positioned only over the window */
+.demo-curtain {
+  top: 0;
+  width: 8.5%;
+  height: 100%;
+}
+
+.demo-curtain-left {
+  left: 83%;
+  right: auto;
+  transform-origin: left center;
+}
+
+.demo-curtain-right {
+  right: 0;
+  left: auto;
+  transform-origin: right center;
+}
+
+.demo-room.curtains-open .demo-curtain-left,
+.demo-room.curtains-open .demo-curtain-right {
+  transform: scaleX(.16);
+}
+
+/* Real ceiling spotlight glow */
+.room-light {
+  opacity: 0;
+  background:
+    radial-gradient(circle at 22% 8%, rgba(255,220,150,.95) 0, rgba(255,190,90,.3) 7%, transparent 23%),
+    radial-gradient(circle at 27% 15%, rgba(255,220,150,.9) 0, rgba(255,190,90,.25) 7%, transparent 22%),
+    radial-gradient(circle at 74% 8%, rgba(255,220,150,.95) 0, rgba(255,190,90,.3) 7%, transparent 23%),
+    radial-gradient(circle at 78% 15%, rgba(255,220,150,.9) 0, rgba(255,190,90,.25) 7%, transparent 22%),
+    rgba(255,185,90,.12);
+  mix-blend-mode: screen;
+  transition: opacity .8s ease;
+}
+
+.demo-room.lights-on .room-light {
+  opacity: 1;
+  background:
+    radial-gradient(circle at 22% 8%, rgba(255,220,150,.95) 0, rgba(255,190,90,.3) 7%, transparent 23%),
+    radial-gradient(circle at 27% 15%, rgba(255,220,150,.9) 0, rgba(255,190,90,.25) 7%, transparent 22%),
+    radial-gradient(circle at 74% 8%, rgba(255,220,150,.95) 0, rgba(255,190,90,.3) 7%, transparent 23%),
+    radial-gradient(circle at 78% 15%, rgba(255,220,150,.9) 0, rgba(255,190,90,.25) 7%, transparent 22%),
+    rgba(255,185,90,.12);
+}
+
+@media (max-width: 700px) {
+  .demo-room {
+    background-position: right center;
+  }
+}
