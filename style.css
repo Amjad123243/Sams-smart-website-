@@ -1116,3 +1116,102 @@ nav a {
     font-size: 11px;
   }
 }
+
+/* REALISTIC WINDOW CURTAINS */
+
+.demo-room::after {
+  content: "";
+  position: absolute;
+  top: 2.5%;
+  left: 82.5%;
+  z-index: 4;
+  width: 17.5%;
+  height: 4px;
+  border-radius: 8px;
+  background: linear-gradient(
+    180deg,
+    #f4f4f4,
+    #7d8285 48%,
+    #dadada
+  );
+  box-shadow:
+    0 3px 7px rgba(0,0,0,.35),
+    0 0 0 1px rgba(255,255,255,.35);
+}
+
+.demo-curtain {
+  top: 3%;
+  height: 94%;
+  opacity: .78;
+  border-radius: 0 0 14px 14px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(235,235,228,.82) 0%,
+      rgba(255,255,250,.6) 10%,
+      rgba(170,175,174,.38) 20%,
+      rgba(250,250,244,.72) 31%,
+      rgba(145,150,150,.28) 42%,
+      rgba(242,242,236,.76) 54%
+    );
+  box-shadow:
+    inset 8px 0 14px rgba(255,255,255,.22),
+    inset -8px 0 16px rgba(40,45,45,.18),
+    4px 8px 14px rgba(0,0,0,.22);
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+  transition:
+    transform 1.8s cubic-bezier(.77,0,.18,1),
+    opacity 1.2s ease;
+}
+
+.demo-curtain-left {
+  border-right: 1px solid rgba(90,95,95,.22);
+}
+
+.demo-curtain-right {
+  border-left: 1px solid rgba(255,255,255,.35);
+}
+
+.demo-room.curtains-open .demo-curtain-left,
+.demo-room.curtains-open .demo-curtain-right {
+  transform: scaleX(.24);
+  opacity: .92;
+}
+/* Keep the sofa in front of the moving curtains */
+
+.demo-room::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+
+  background:
+    url("smart-room.png")
+    center / cover no-repeat;
+
+  clip-path: polygon(
+    56% 95%,
+    56% 75%,
+    64% 68%,
+    71% 59%,
+    78% 55%,
+    86% 54%,
+    93% 59%,
+    98% 66%,
+    98% 95%
+  );
+}
+
+.room-light {
+  z-index: 5;
+}
+
+.demo-room::after {
+  z-index: 6;
+}
+
+.room-status {
+  z-index: 7;
+}
