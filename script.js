@@ -198,3 +198,42 @@ const scrollRevealObserver = new IntersectionObserver(
 scrollRevealElements.forEach(element => {
   scrollRevealObserver.observe(element);
 });
+
+/* AC VISUAL EFFECT & SMART AUDIO */
+
+const smartAudioControl =
+  document.getElementById("speakerControl");
+
+acControl.addEventListener("click", () => {
+  const acIsActive =
+    demoRoom.classList.toggle("ac-active");
+
+  acControl.classList.toggle("active", acIsActive);
+
+  if (acIsActive) {
+    acControl.querySelector("small").textContent =
+      roomTemperature + "°C";
+
+    temperatureStatus.textContent =
+      roomTemperature + "°C";
+
+    roomStatus.textContent = "Smart AC Active";
+  } else {
+    acControl.querySelector("small").textContent = "OFF";
+    temperatureStatus.textContent = "--";
+    roomStatus.textContent = "Smart AC Off";
+  }
+});
+
+smartAudioControl.addEventListener("click", () => {
+  const audioIsOn =
+    demoRoom.classList.toggle("speaker-on");
+
+  smartAudioControl.classList.toggle("active", audioIsOn);
+
+  smartAudioControl.querySelector("small").textContent =
+    audioIsOn ? "PLAYING" : "OFF";
+
+  roomStatus.textContent =
+    audioIsOn ? "Smart Audio Playing" : "Smart Audio Off";
+});
