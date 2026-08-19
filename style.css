@@ -1191,3 +1191,111 @@ nav a {
 .room-status {
   z-index: 7;
 }
+
+/* =========================
+   AC & SPEAKER ANIMATIONS
+========================= */
+
+/* AC airflow — positioned under the AC */
+.ac-airflow {
+  position: absolute;
+  left: 21%;
+  top: 27%;
+  z-index: 5;
+  width: 10.5%;
+  height: 12%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .5s ease;
+}
+
+.ac-airflow span {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  height: 20px;
+  border-bottom: 2px solid rgba(115,220,255,.8);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 5px rgba(70,190,255,.8));
+  animation: acWind 1.8s ease-in-out infinite;
+}
+
+.ac-airflow span:nth-child(1) {
+  top: 0;
+}
+
+.ac-airflow span:nth-child(2) {
+  top: 25%;
+  animation-delay: .35s;
+}
+
+.ac-airflow span:nth-child(3) {
+  top: 50%;
+  animation-delay: .7s;
+}
+
+.demo-room.ac-active .ac-airflow {
+  opacity: 1;
+}
+
+@keyframes acWind {
+  0% {
+    opacity: 0;
+    transform: translateY(-5px) scaleX(.65);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(28px) scaleX(1);
+  }
+}
+
+/* Speaker waves — positioned over the wall speaker */
+.speaker-waves {
+  position: absolute;
+  left: 12.3%;
+  top: 34%;
+  z-index: 5;
+  width: 5%;
+  aspect-ratio: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .5s ease;
+}
+
+.speaker-waves span {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(95,205,255,.85);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 5px rgba(50,180,255,.8));
+  animation: speakerPulse 1.8s ease-out infinite;
+}
+
+.speaker-waves span:nth-child(2) {
+  animation-delay: .5s;
+}
+
+.speaker-waves span:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.demo-room.speaker-on .speaker-waves {
+  opacity: 1;
+}
+
+@keyframes speakerPulse {
+  0% {
+    opacity: .9;
+    transform: scale(.45);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2.3);
+  }
+}
