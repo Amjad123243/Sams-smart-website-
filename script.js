@@ -237,3 +237,30 @@ smartAudioControl.addEventListener("click", () => {
   roomStatus.textContent =
     audioIsOn ? "Smart Audio Playing" : "Smart Audio Off";
 });
+
+/* INTERACTIVE SMART DOOR LOCK */
+
+const smartLockPoint =
+  document.getElementById("smartLockPoint");
+
+const lockState =
+  document.getElementById("lockState");
+
+let doorIsLocked = true;
+
+smartLockPoint.addEventListener("click", () => {
+  doorIsLocked = !doorIsLocked;
+
+  smartLockPoint.classList.toggle(
+    "unlocked",
+    !doorIsLocked
+  );
+
+  lockState.textContent =
+    doorIsLocked ? "LOCKED" : "UNLOCKED";
+
+  roomStatus.textContent =
+    doorIsLocked
+      ? "Smart Door Secured"
+      : "Smart Door Unlocked";
+});
