@@ -95,3 +95,74 @@ aiOptions.forEach(button => {
     }, 450);
   });
 });
+
+/* INTERACTIVE SMART ROOM */
+
+const demoRoom = document.getElementById("demoRoom");
+const lightControl = document.getElementById("lightControl");
+const curtainControl = document.getElementById("curtainControl");
+const acControl = document.getElementById("acControl");
+const cinemaControl = document.getElementById("cinemaControl");
+const roomStatus = document.getElementById("roomStatus");
+const temperatureStatus = document.getElementById("temperatureStatus");
+
+let roomTemperature = 22;
+
+lightControl.addEventListener("click", () => {
+  const isOn = demoRoom.classList.toggle("lights-on");
+
+  lightControl.classList.toggle("active", isOn);
+  lightControl.querySelector("small").textContent = isOn ? "ON" : "OFF";
+  roomStatus.textContent = isOn ? "Lighting Activated" : "Lighting Off";
+});
+
+curtainControl.addEventListener("click", () => {
+  const isOpen = demoRoom.classList.toggle("curtains-open");
+
+  curtainControl.classList.toggle("active", isOpen);
+  curtainControl.querySelector("small").textContent =
+    isOpen ? "OPEN" : "CLOSED";
+
+  roomStatus.textContent =
+    isOpen ? "Curtains Opening" : "Curtains Closing";
+});
+
+acControl.addEventListener("click", () => {
+  roomTemperature--;
+
+  if (roomTemperature < 18) {
+    roomTemperature = 24;
+  }
+
+  acControl.classList.add("active");
+  acControl.querySelector("small").textContent =
+    roomTemperature + "°C";
+
+  temperatureStatus.textContent =
+    roomTemperature + "°C";
+
+  roomStatus.textContent = "Smart AC Active";
+});
+
+cinemaControl.addEventListener("click", () => {
+  const cinemaOn = demoRoom.classList.toggle("cinema-mode");
+
+  cinemaControl.classList.toggle("active", cinemaOn);
+  cinemaControl.querySelector("small").textContent =
+    cinemaOn ? "ACTIVE" : "SCENE";
+
+  if (cinemaOn) {
+    demoRoom.classList.add("curtains-open");
+    demoRoom.classList.remove("lights-on");
+
+    curtainControl.classList.add("active");
+    curtainControl.querySelector("small").textContent = "OPEN";
+
+    lightControl.classList.remove("active");
+    lightControl.querySelector("small").textContent = "OFF";
+
+    roomStatus.textContent = "Cinema Scene Activated";
+  } else {
+    roomStatus.textContent = "Living Room Ready";
+  }
+});
