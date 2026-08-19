@@ -521,3 +521,72 @@ nav a {
   opacity: 1;
   visibility: visible;
 }
+
+/* WhatsApp consultation button */
+.whatsapp-button {
+  position: fixed;
+  right: 22px;
+  bottom: calc(22px + env(safe-area-inset-bottom));
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 18px 12px 13px;
+  border: 1px solid rgba(255, 255, 255, .25);
+  border-radius: 40px;
+
+  background: #25d366;
+  color: white;
+
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, .3);
+
+  opacity: 1;
+  transform: translateY(0);
+
+  transition:
+    opacity .5s ease,
+    transform .3s ease,
+    background .3s ease;
+}
+
+.whatsapp-button img {
+  width: 27px;
+  height: 27px;
+  display: block;
+}
+
+.whatsapp-button:hover {
+  background: #128c4a;
+  transform: translateY(-4px);
+}
+
+/* Hide the button until the curtains open */
+#website:not(.visible) ~ .whatsapp-button {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .whatsapp-button {
+    right: 16px;
+    bottom: calc(18px + env(safe-area-inset-bottom));
+    padding: 13px;
+  }
+
+  .whatsapp-button span {
+    display: none;
+  }
+
+  .whatsapp-button img {
+    width: 29px;
+    height: 29px;
+  }
+}
