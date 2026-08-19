@@ -1083,3 +1083,36 @@ nav a {
     background-position: right center;
   }
 }
+
+/* FIX SMART ROOM PROPORTIONS */
+
+.demo-room {
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 700px) {
+  .demo-room {
+    min-height: 0;
+    aspect-ratio: 16 / 9;
+    background-position: center;
+  }
+
+  .room-status {
+    top: 10px;
+    right: 10px;
+    gap: 8px;
+    padding: 8px 11px;
+  }
+
+  .room-status span {
+    font-size: 9px;
+  }
+
+  .room-status strong {
+    font-size: 11px;
+  }
+}
