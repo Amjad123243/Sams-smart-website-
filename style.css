@@ -1178,31 +1178,7 @@ nav a {
   transform: scaleX(.24);
   opacity: .92;
 }
-/* Keep the sofa in front of the moving curtains */
 
-.demo-room::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  pointer-events: none;
-
-  background:
-    url("smart-room.png")
-    center / cover no-repeat;
-
-  clip-path: polygon(
-    56% 95%,
-    56% 75%,
-    64% 68%,
-    71% 59%,
-    78% 55%,
-    86% 54%,
-    93% 59%,
-    98% 66%,
-    98% 95%
-  );
-}
 
 .room-light {
   z-index: 5;
