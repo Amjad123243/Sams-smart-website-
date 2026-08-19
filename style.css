@@ -1315,3 +1315,75 @@ nav a {
     grid-column: 1 / -1;
   }
 }
+
+/* =========================
+   INTERACTIVE SMART LOCK
+========================= */
+
+.smart-lock-point {
+  position: absolute;
+  left: 8.35%;
+  top: 50%;
+  z-index: 7;
+  width: clamp(16px, 2.3vw, 36px);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+}
+
+.lock-glow {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border: 2px solid #4cff9a;
+  border-radius: 50%;
+  background: rgba(30,255,130,.12);
+  box-shadow:
+    0 0 8px rgba(30,255,130,.9),
+    0 0 20px rgba(30,255,130,.6);
+  animation: lockPulse 1.8s ease-in-out infinite;
+}
+
+.smart-lock-point strong {
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 50%;
+  padding: 5px 8px;
+  border-radius: 12px;
+  background: rgba(5,12,16,.72);
+  color: #70ffae;
+  font-size: clamp(5px, .65vw, 9px);
+  letter-spacing: 1px;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.smart-lock-point.unlocked .lock-glow {
+  border-color: #ff9b55;
+  background: rgba(255,120,55,.14);
+  box-shadow:
+    0 0 8px rgba(255,120,55,.9),
+    0 0 20px rgba(255,120,55,.55);
+}
+
+.smart-lock-point.unlocked strong {
+  color: #ffad72;
+}
+
+@keyframes lockPulse {
+  0%, 100% {
+    transform: scale(.85);
+    opacity: .7;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
