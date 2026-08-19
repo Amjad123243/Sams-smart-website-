@@ -1387,3 +1387,95 @@ nav a {
     opacity: 1;
   }
 }
+
+/* =========================
+   SMART ROOM SCENES
+========================= */
+
+.room-scenes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 28px 32px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  background:
+    linear-gradient(135deg, #101a1f, #081116);
+}
+
+.scene-title {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 190px;
+}
+
+.scene-title span {
+  color: #65c9ff;
+  font-size: 9px;
+  letter-spacing: 3px;
+}
+
+.scene-title strong {
+  color: white;
+  font-size: 16px;
+}
+
+.scene-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  width: 100%;
+  max-width: 590px;
+}
+
+.scene-buttons button {
+  min-height: 58px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: 16px;
+  background: rgba(255,255,255,.045);
+  color: rgba(255,255,255,.72);
+  font-size: 11px;
+  cursor: pointer;
+  transition:
+    background .3s ease,
+    border-color .3s ease,
+    transform .3s ease;
+}
+
+.scene-buttons button span {
+  display: block;
+  margin-bottom: 4px;
+  color: #85dbff;
+  font-size: 17px;
+}
+
+.scene-buttons button.active {
+  border-color: rgba(100,210,255,.7);
+  background: linear-gradient(145deg, #138fcf, #07598d);
+  color: white;
+  box-shadow: 0 8px 25px rgba(0,140,210,.25);
+  transform: translateY(-2px);
+}
+
+.scene-buttons button.active span {
+  color: white;
+}
+
+@media (max-width: 700px) {
+  .room-scenes {
+    align-items: stretch;
+    flex-direction: column;
+    padding: 24px 20px;
+  }
+
+  .scene-buttons {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: none;
+  }
+
+  .scene-buttons button {
+    min-height: 65px;
+  }
+}
