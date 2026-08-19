@@ -835,7 +835,7 @@ nav a {
   overflow: hidden;
   background:
     linear-gradient(rgba(0,0,0,.15), rgba(0,0,0,.28)),
-    url("smart-room.png")
+    url("smart-room-v2.png")
     center / cover no-repeat;
   transition: filter .8s ease;
 }
