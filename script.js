@@ -264,3 +264,119 @@ smartLockPoint.addEventListener("click", () => {
       ? "Smart Door Secured"
       : "Smart Door Unlocked";
 });
+
+/* =========================
+   SMART ROOM SCENES
+========================= */
+
+const sceneButtons =
+  document.querySelectorAll(".scene-buttons button");
+
+function setSceneDoorLock(locked) {
+  doorIsLocked = locked;
+
+  smartLockPoint.classList.toggle(
+    "unlocked",
+    !locked
+  );
+
+  lockState.textContent =
+    locked ? "LOCKED" : "UNLOCKED";
+}
+
+function activateSmartScene(scene) {
+  const morning = scene === "morning";
+  const cinema = scene === "cinema";
+  const sleep = scene === "sleep";
+  const away = scene === "away";
+
+  /* Lighting */
+  demoRoom.classList.toggle("lights-on", morning);
+  lightControl.classList.toggle("active", morning);
+
+  lightControl.querySelector("small").textContent =
+    morning ? "ON" : "OFF";
+
+  /* Curtains */
+  demoRoom.classList.toggle("curtains-open", morning);
+  curtainControl.classList.toggle("active", morning);
+
+  curtainControl.querySelector("small").textContent =
+    morning ? "OPEN" : "CLOSED";
+
+  /* Dark room effect */
+  demoRoom.classList.toggle(
+    "cinema-mode",
+    cinema || sleep || away
+  );
+
+  cinemaControl.classList.toggle("active", cinema);
+
+  cinemaControl.querySelector("small").textContent =
+    cinema ? "ACTIVE" : "SCENE";
+
+  /* Smart Audio */
+  demoRoom.classList.toggle("speaker-on", cinema);
+  smartAudioControl.classList.toggle("active", cinema);
+
+  smartAudioControl.querySelector("small").textContent =
+    cinema ? "PLAYING" : "OFF";
+
+  /* Smart AC */
+  const acShouldRun = !away;
+
+  demoRoom.classList.toggle("ac-active", acShouldRun);
+  acControl.classList.toggle("active", acShouldRun);
+
+  if (morning) roomTemperature = 22;
+  if (cinema) roomTemperature = 21;
+  if (sleep) roomTemperature = 20;
+
+  acControl.querySelector("small").textContent =
+    acShouldRun ? roomTemperature + "°C" : "OFF";
+
+  temperatureStatus.textContent =
+    acShouldRun ? roomTemperature + "°C" : "--";
+
+  /* Door security */
+  setSceneDoorLock(true);
+
+  /* Room message */
+  if (morning) {
+    roomStatus.textContent = "Good Morning Scene";
+  }
+
+  if (cinema) {
+    roomStatus.textContent = "Cinema Scene Activated";
+  }
+
+  if (sleep) {
+    roomStatus.textContent = "Sleep Scene Activated";
+  }
+
+  if (away) {
+    roomStatus.textContent = "Away Mode • Security Armed";
+  }
+}
+
+sceneButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    sceneButtons.forEach(item => {
+      item.classList.remove("active");
+    });
+
+    button.classList.add("active");
+    activateSmartScene(button.dataset.scene);
+  });
+});
+
+/* Make the original Cinema control close curtains */
+cinemaControl.addEventListener("click", () => {
+  if (demoRoom.classList.contains("cinema-mode")) {
+    demoRoom.classList.remove("curtains-open");
+
+    curtainControl.classList.remove("active");
+    curtainControl.querySelector("small").textContent =
+      "CLOSED";
+  }
+});
