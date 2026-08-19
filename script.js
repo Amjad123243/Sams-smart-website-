@@ -166,3 +166,35 @@ cinemaControl.addEventListener("click", () => {
     roomStatus.textContent = "Living Room Ready";
   }
 });
+
+/* SCROLL REVEAL ANIMATION */
+
+const scrollRevealElements = document.querySelectorAll(
+  ".section-heading, .flow-card, .solution-card, .smart-room-demo, .compatibility"
+);
+
+scrollRevealElements.forEach((element, index) => {
+  element.classList.add("reveal-item");
+
+  const delayNumber = (index % 3) + 1;
+  element.classList.add("reveal-delay-" + delayNumber);
+});
+
+const scrollRevealObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("reveal-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.12,
+    rootMargin: "0px 0px -40px 0px"
+  }
+);
+
+scrollRevealElements.forEach(element => {
+  scrollRevealObserver.observe(element);
+});
