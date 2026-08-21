@@ -173,14 +173,69 @@ nav a {
 }
 
 .hero {
+  position: relative;
+  isolation: isolate;
   min-height: 100vh;
   display: flex;
   align-items: center;
   padding: 120px 10%;
+  overflow: hidden;
+  background: #f3f1ec;
+}
+
+/* New animated smart-home image */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -4%;
+  z-index: -2;
+
   background:
-    linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.2)),
-    url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2400&q=90")
-    center / cover;
+    url("hero-smart-home-v2.png")
+    center 42% / cover no-repeat;
+
+  animation: heroImageMotion 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Keeps the white ceiling clear and improves text visibility */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 24%,
+    rgba(0, 0, 0, 0.16) 45%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+@keyframes heroImageMotion {
+  from {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: scale(1.09) translate3d(-1%, -1%, 0);
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 650px;
+  text-shadow: 0 4px 22px rgba(0, 0, 0, 0.48);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before {
+    animation: none;
+  }
 }
 
 .hero-content {
