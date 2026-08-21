@@ -568,3 +568,64 @@ document.addEventListener("keydown", event => {
     closeCatalogViewer();
   }
 });
+
+/* ==================================
+   SMART HOME PLANNER - WHATSAPP
+================================== */
+
+const plannerSubmit = document.getElementById("plannerSubmit");
+
+if (plannerSubmit) {
+  plannerSubmit.addEventListener("click", () => {
+    const property = document.querySelector(
+      'input[name="property"]:checked'
+    );
+
+    const rooms = document.getElementById("plannerRooms").value;
+
+    const selectedProducts = Array.from(
+      document.querySelectorAll(".planner-products input:checked")
+    ).map(product => product.value);
+
+    if (!property) {
+      alert("Please select your property type.");
+      return;
+    }
+
+    if (!rooms) {
+      alert("Please select the number of rooms.");
+      return;
+    }
+
+    if (selectedProducts.length === 0) {
+      alert("Please select at least one smart solution.");
+      return;
+    }
+
+    const message =
+`Hello SAMS-SMART,
+
+I would like a customized smart home proposal.
+
+Property Type: ${property.value}
+Property Size: ${rooms}
+
+Selected Smart Solutions:
+- ${selectedProducts.join("\n- ")}
+
+Please contact me to arrange a free consultation.`;
+
+    const whatsappURL =
+      "https://wa.me/971502807970?text=" +
+      encodeURIComponent(message);
+
+    plannerSubmit.innerHTML = "Preparing Your Plan...";
+
+    setTimeout(() => {
+      window.location.href = whatsappURL;
+
+      plannerSubmit.innerHTML =
+        'Request My Smart Home Plan <span>→</span>';
+    }, 500);
+  });
+}
