@@ -2168,3 +2168,83 @@ body.catalog-is-open {
     margin-bottom: 28px;
   }
 }
+
+/* ==================================
+   HORIZONTAL SWIPE SECTIONS
+================================== */
+
+.ecosystem-flow,
+.solutions-grid,
+.process-grid {
+  display: flex !important;
+  grid-template-columns: none !important;
+  gap: 18px;
+  width: 100%;
+  padding: 10px 4px 28px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+}
+
+.ecosystem-flow::-webkit-scrollbar,
+.solutions-grid::-webkit-scrollbar,
+.process-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.ecosystem-flow:active,
+.solutions-grid:active,
+.process-grid:active {
+  cursor: grabbing;
+}
+
+.flow-card,
+.solution-card,
+.process-card,
+.process-card:last-child {
+  flex: 0 0 clamp(290px, 34vw, 390px) !important;
+  width: auto !important;
+  min-width: 0;
+  grid-column: auto !important;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Remove the old line behind How It Works */
+
+.process-grid::before {
+  display: none !important;
+}
+
+/* Small swipe indicator */
+
+.ecosystem-flow::after,
+.solutions-grid::after,
+.process-grid::after {
+  content: "";
+  flex: 0 0 3px;
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+  .ecosystem-flow,
+  .solutions-grid,
+  .process-grid {
+    margin-right: -22px;
+    padding-right: 22px;
+    gap: 14px;
+  }
+
+  .flow-card,
+  .solution-card,
+  .process-card,
+  .process-card:last-child {
+    flex-basis: 84vw !important;
+    max-width: 360px;
+  }
+}
