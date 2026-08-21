@@ -674,3 +674,55 @@ document.addEventListener("keydown", (event) => {
     closeSmartPlanner();
   }
 });
+
+/* ==================================
+   RESPONSIVE NAVIGATION MENU
+================================== */
+
+const siteMenuButton = document.getElementById("menuToggle");
+const siteMainNav = document.getElementById("mainNav");
+
+function openSiteMenu() {
+  siteMenuButton.classList.add("active");
+  siteMainNav.classList.add("open");
+  siteMenuButton.setAttribute("aria-expanded", "true");
+}
+
+function closeSiteMenu() {
+  siteMenuButton.classList.remove("active");
+  siteMainNav.classList.remove("open");
+  siteMenuButton.setAttribute("aria-expanded", "false");
+}
+
+siteMenuButton.addEventListener("click", (event) => {
+  event.stopPropagation();
+
+  if (siteMainNav.classList.contains("open")) {
+    closeSiteMenu();
+  } else {
+    openSiteMenu();
+  }
+});
+
+/* Close after selecting a menu option */
+siteMainNav.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", closeSiteMenu);
+});
+
+/* Close when clicking outside */
+document.addEventListener("click", (event) => {
+  if (
+    siteMainNav.classList.contains("open") &&
+    !siteMainNav.contains(event.target) &&
+    !siteMenuButton.contains(event.target)
+  ) {
+    closeSiteMenu();
+  }
+});
+
+/* Close with Escape */
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeSiteMenu();
+  }
+});
