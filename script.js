@@ -382,14 +382,14 @@ cinemaControl.addEventListener("click", () => {
 });
 
 /* =========================
-   PRODUCT CATALOG VIEWER
+   MULTIPAGE CATALOG VIEWER
 ========================= */
 
 const catalogModal =
   document.getElementById("catalogModal");
 
-const catalogFrame =
-  document.getElementById("catalogFrame");
+const catalogPages =
+  document.getElementById("catalogPages");
 
 const catalogClose =
   document.getElementById("catalogClose");
@@ -403,6 +403,120 @@ const catalogLoading =
 const catalogButtons =
   document.querySelectorAll(".catalog-links a");
 
+let pdfJsPromise = null;
+let catalogSession = 0;
+
+function loadPdfJs() {
+  if (!pdfJsPromise) {
+    pdfJsPromise = import(
+      "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.7.284/build/pdf.min.mjs"
+    ).then(pdfjsLib => {
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdn.jsdelivr.net/npm/pdfjs-dist@5.7.284/build/pdf.worker.min.mjs";
+
+      return pdfjsLib;
+    });
+  }
+
+  return pdfJsPromise;
+}
+
+async function renderCatalog(catalogUrl) {
+  const currentSession = ++catalogSession;
+
+  try {
+    const pdfjsLib = await loadPdfJs();
+
+    const fullUrl =
+      new URL(catalogUrl, window.location.href).href;
+
+    const pdfDocument =
+      await pdfjsLib.getDocument(fullUrl).promise;
+
+    await new Promise(resolve => {
+      requestAnimationFrame(resolve);
+    });
+
+    for (
+      let pageNumber = 1;
+      pageNumber <= pdfDocument.numPages;
+      pageNumber++
+    ) {
+      if (currentSession !== catalogSession) return;
+
+      const page =
+        await pdfDocument.getPage(pageNumber);
+
+      const originalViewport =
+        page.getViewport({ scale: 1 });
+
+      const availableWidth =
+        Math.max(catalogPages.clientWidth - 40, 280);
+
+      const scale =
+        availableWidth / originalViewport.width;
+
+      const viewport =
+        page.getViewport({ scale });
+
+      const outputScale =
+        Math.min(window.devicePixelRatio || 1, 1.5);
+
+      const canvas =
+        document.createElement("canvas");
+
+      const context =
+        canvas.getContext("2d");
+
+      canvas.width =
+        Math.floor(viewport.width * outputScale);
+
+      canvas.height =
+        Math.floor(viewport.height * outputScale);
+
+      canvas.style.width =
+        Math.floor(viewport.width) + "px";
+
+      canvas.style.height =
+        Math.floor(viewport.height) + "px";
+
+      catalogPages.appendChild(canvas);
+
+      await page.render({
+        canvas,
+        canvasContext: context,
+        viewport,
+        transform: outputScale !== 1
+          ? [outputScale, 0, 0, outputScale, 0, 0]
+          : null
+      }).promise;
+
+      if (pageNumber === 1) {
+        catalogLoading.classList.add("hidden");
+      }
+    }
+
+    catalogLoading.classList.add("hidden");
+
+  } catch (error) {
+    console.error("Catalogue error:", error);
+
+    catalogLoading.classList.add("hidden");
+
+    catalogPages.innerHTML = `
+      <div style="
+        margin:auto;
+        padding:30px;
+        text-align:center;
+        color:#26343b;
+      ">
+        Catalogue could not load.<br><br>
+        Please close it and try again.
+      </div>
+    `;
+  }
+}
+
 catalogButtons.forEach(button => {
   button.addEventListener("click", event => {
     event.preventDefault();
@@ -413,26 +527,28 @@ catalogButtons.forEach(button => {
     catalogTitle.textContent =
       button.textContent.trim();
 
+    catalogPages.innerHTML = "";
+    catalogLoading.textContent =
+      "Loading catalogue...";
+
     catalogLoading.classList.remove("hidden");
     catalogModal.classList.add("open");
     catalogModal.setAttribute("aria-hidden", "false");
     document.body.classList.add("catalog-is-open");
 
-    catalogFrame.src = catalogUrl;
+    renderCatalog(catalogUrl);
   });
 });
 
-catalogFrame.addEventListener("load", () => {
-  catalogLoading.classList.add("hidden");
-});
-
 function closeCatalogViewer() {
+  catalogSession++;
+
   catalogModal.classList.remove("open");
   catalogModal.setAttribute("aria-hidden", "true");
   document.body.classList.remove("catalog-is-open");
 
   setTimeout(() => {
-    catalogFrame.src = "";
+    catalogPages.innerHTML = "";
   }, 350);
 }
 
