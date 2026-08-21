@@ -629,3 +629,48 @@ Please contact me to arrange a free consultation.`;
     }, 500);
   });
 }
+
+/* ==================================
+   SMART PLANNER POPUP
+================================== */
+
+const plannerOpenButton = document.getElementById("plannerOpen");
+const plannerCloseButton = document.getElementById("plannerClose");
+const plannerPopup = document.getElementById("plannerBox");
+
+function openSmartPlanner() {
+  plannerPopup.classList.add("open");
+  plannerPopup.setAttribute("aria-hidden", "false");
+  document.body.classList.add("planner-is-open");
+}
+
+function closeSmartPlanner() {
+  plannerPopup.classList.remove("open");
+  plannerPopup.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("planner-is-open");
+}
+
+plannerOpenButton.addEventListener("click", (event) => {
+  event.stopPropagation();
+  openSmartPlanner();
+});
+
+plannerCloseButton.addEventListener("click", closeSmartPlanner);
+
+/* Close when clicking outside the form */
+document.addEventListener("click", (event) => {
+  if (
+    plannerPopup.classList.contains("open") &&
+    !plannerPopup.contains(event.target) &&
+    event.target !== plannerOpenButton
+  ) {
+    closeSmartPlanner();
+  }
+});
+
+/* Close using Escape */
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeSmartPlanner();
+  }
+});
