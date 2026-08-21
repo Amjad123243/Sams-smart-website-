@@ -380,3 +380,75 @@ cinemaControl.addEventListener("click", () => {
       "CLOSED";
   }
 });
+
+/* =========================
+   PRODUCT CATALOG VIEWER
+========================= */
+
+const catalogModal =
+  document.getElementById("catalogModal");
+
+const catalogFrame =
+  document.getElementById("catalogFrame");
+
+const catalogClose =
+  document.getElementById("catalogClose");
+
+const catalogTitle =
+  document.getElementById("catalogTitle");
+
+const catalogLoading =
+  document.getElementById("catalogLoading");
+
+const catalogButtons =
+  document.querySelectorAll(".catalog-links a");
+
+catalogButtons.forEach(button => {
+  button.addEventListener("click", event => {
+    event.preventDefault();
+
+    const catalogUrl =
+      button.getAttribute("href");
+
+    catalogTitle.textContent =
+      button.textContent.trim();
+
+    catalogLoading.classList.remove("hidden");
+    catalogModal.classList.add("open");
+    catalogModal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("catalog-is-open");
+
+    catalogFrame.src = catalogUrl;
+  });
+});
+
+catalogFrame.addEventListener("load", () => {
+  catalogLoading.classList.add("hidden");
+});
+
+function closeCatalogViewer() {
+  catalogModal.classList.remove("open");
+  catalogModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("catalog-is-open");
+
+  setTimeout(() => {
+    catalogFrame.src = "";
+  }, 350);
+}
+
+catalogClose.addEventListener(
+  "click",
+  closeCatalogViewer
+);
+
+catalogModal.addEventListener("click", event => {
+  if (event.target === catalogModal) {
+    closeCatalogViewer();
+  }
+});
+
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    closeCatalogViewer();
+  }
+});
