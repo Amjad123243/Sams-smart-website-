@@ -170,7 +170,7 @@ cinemaControl.addEventListener("click", () => {
 /* SCROLL REVEAL ANIMATION */
 
 const scrollRevealElements = document.querySelectorAll(
-  ".section-heading, .flow-card, .solution-card, .smart-room-demo, .compatibility"
+  ".section-heading, .flow-card, .solution-card, .smart-room-demo, .compatibility, .process-heading, .process-card"
 );
 
 scrollRevealElements.forEach((element, index) => {
