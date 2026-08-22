@@ -777,3 +777,17 @@ aboutContact.addEventListener("click", () => {
     "_blank"
   );
 });
+
+/* Open Smart Home Planner from Contact menu */
+const contactLink = document.getElementById("contactLink");
+const plannerOpenButton = document.getElementById("plannerOpen");
+
+contactLink.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  if (typeof closeSiteMenu === "function") {
+    closeSiteMenu();
+  }
+
+  plannerOpenButton.click();
+});
