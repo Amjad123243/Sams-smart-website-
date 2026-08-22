@@ -779,15 +779,19 @@ aboutContact.addEventListener("click", () => {
 });
 
 /* Open Smart Home Planner from Contact menu */
-const contactLink = document.getElementById("contactLink");
-const plannerOpenButton = document.getElementById("plannerOpen");
+(() => {
+  const contactMenuLink = document.getElementById("contactLink");
+  const plannerTrigger = document.getElementById("plannerOpen");
 
-contactLink.addEventListener("click", (event) => {
-  event.preventDefault();
+  if (!contactMenuLink || !plannerTrigger) return;
 
-  if (typeof closeSiteMenu === "function") {
-    closeSiteMenu();
-  }
+  contactMenuLink.addEventListener("click", (event) => {
+    event.preventDefault();
 
-  plannerOpenButton.click();
-});
+    if (typeof closeSiteMenu === "function") {
+      closeSiteMenu();
+    }
+
+    plannerTrigger.click();
+  });
+})();
