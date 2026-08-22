@@ -726,3 +726,54 @@ document.addEventListener("keydown", (event) => {
     closeSiteMenu();
   }
 });
+
+/* About SAMS SMART */
+const aboutLink = document.getElementById("aboutLink");
+const aboutModal = document.getElementById("aboutModal");
+const aboutClose = document.getElementById("aboutClose");
+const aboutContact = document.getElementById("aboutContact");
+
+function openAboutModal() {
+  aboutModal.classList.add("open");
+  aboutModal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+
+  if (typeof closeSiteMenu === "function") {
+    closeSiteMenu();
+  }
+}
+
+function closeAboutModal() {
+  aboutModal.classList.remove("open");
+  aboutModal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+}
+
+aboutLink.addEventListener("click", (event) => {
+  event.preventDefault();
+  openAboutModal();
+});
+
+aboutClose.addEventListener("click", closeAboutModal);
+
+aboutModal.addEventListener("click", (event) => {
+  if (event.target === aboutModal) {
+    closeAboutModal();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeAboutModal();
+  }
+});
+
+aboutContact.addEventListener("click", () => {
+  const message =
+    "Hello SAMS SMART, I would like to request a free smart home consultation.";
+
+  window.open(
+    "https://wa.me/971502807970?text=" + encodeURIComponent(message),
+    "_blank"
+  );
+});
