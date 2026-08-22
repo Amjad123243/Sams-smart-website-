@@ -2693,3 +2693,133 @@ nav a:hover {
     padding-top: 120px;
   }
 }
+
+/* =========================
+   ABOUT SAMS SMART MODAL
+========================= */
+
+.about-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(3, 12, 17, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.about-modal.open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.about-box {
+  position: relative;
+  width: min(760px, 100%);
+  max-height: 85vh;
+  padding: 46px;
+  overflow: hidden;
+  color: #ffffff;
+  background:
+    linear-gradient(145deg, rgba(17, 37, 46, 0.97),
+    rgba(4, 15, 21, 0.98));
+  border: 1px solid rgba(82, 195, 255, 0.28);
+  border-radius: 30px;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.65);
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.45s ease;
+}
+
+.about-modal.open .about-box {
+  transform: translateY(0) scale(1);
+}
+
+.about-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.about-label {
+  display: block;
+  margin-bottom: 15px;
+  color: #48c8ff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+.about-box h2 {
+  margin: 0 45px 22px 0;
+  font-size: clamp(30px, 5vw, 50px);
+  line-height: 1.05;
+}
+
+.about-content {
+  max-height: 43vh;
+  padding-right: 12px;
+  overflow-y: auto;
+}
+
+.about-content p {
+  margin: 0 0 18px;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.about-signature {
+  display: block;
+  margin-top: 22px;
+  color: #ffffff;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.about-contact {
+  margin-top: 24px;
+  padding: 15px 22px;
+  border: 0;
+  border-radius: 30px;
+  background: linear-gradient(135deg, #20bfff, #0877e8);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .about-modal {
+    padding: 14px;
+  }
+
+  .about-box {
+    max-height: 88vh;
+    padding: 35px 24px 25px;
+    border-radius: 24px;
+  }
+
+  .about-content {
+    max-height: 48vh;
+  }
+
+  .about-box h2 {
+    font-size: 31px;
+  }
+}
