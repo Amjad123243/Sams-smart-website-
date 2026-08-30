@@ -616,7 +616,7 @@ Selected Smart Solutions:
 Please contact me to arrange a free consultation.`;
 
     const whatsappURL =
-      "https://wa.me/971502807970?text=" +
+      "https://wa.me/971543699997?text=" +
       encodeURIComponent(message);
 
     plannerSubmit.innerHTML = "Preparing Your Plan...";
@@ -773,7 +773,7 @@ aboutContact.addEventListener("click", () => {
     "Hello SAMS SMART, I would like to request a free smart home consultation.";
 
   window.open(
-    "https://wa.me/971502807970?text=" + encodeURIComponent(message),
+    "https://wa.me/971543699997?text=" + encodeURIComponent(message),
     "_blank"
   );
 });
