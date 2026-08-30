@@ -53,7 +53,7 @@ const aiAnswers = {
 
   consultation:
     `Great! Tell us about your property and we will help you choose the right system.<br><br>
-    <a href="https://wa.me/971502807970?text=Hello%20SAMS-SMART%2C%20I%20would%20like%20a%20free%20smart%20home%20consultation."
+    <a href="https://wa.me/971543699997?text=Hello%20SAMS-SMART%2C%20I%20would%20like%20a%20free%20smart%20home%20consultation."
        target="_blank"
        style="color:#9edcff;font-weight:700;">
        Start WhatsApp Consultation →
