@@ -795,3 +795,25 @@ aboutContact.addEventListener("click", () => {
     plannerTrigger.click();
   });
 })();
+
+/* Footer navigation */
+(() => {
+  const footerAboutLink = document.getElementById("footerAbout");
+  const footerContactLink = document.getElementById("footerContact");
+  const aboutMenuLink = document.getElementById("aboutLink");
+  const plannerTrigger = document.getElementById("plannerOpen");
+
+  if (footerAboutLink && aboutMenuLink) {
+    footerAboutLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      aboutMenuLink.click();
+    });
+  }
+
+  if (footerContactLink && plannerTrigger) {
+    footerContactLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      plannerTrigger.click();
+    });
+  }
+})();
