@@ -2947,3 +2947,82 @@ nav a:hover {
     line-height: 1.7;
   }
 }
+
+/* Original social media icons */
+.footer-social {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-social .social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+}
+
+.footer-social .social-icon img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+/* Instagram original gradient */
+.footer-social .instagram,
+.footer-social .instagram:hover {
+  background:
+    radial-gradient(circle at 30% 105%,
+      #fdf497 0%, #fdf497 5%,
+      #fd5949 45%, #d6249f 60%, #285aeb 90%);
+}
+
+/* Facebook original blue */
+.footer-social .facebook,
+.footer-social .facebook:hover {
+  background: #1877f2;
+}
+
+/* WhatsApp original green */
+.footer-social .whatsapp,
+.footer-social .whatsapp:hover {
+  background: #25d366;
+}
+
+.footer-social .social-icon:hover {
+  border: 0;
+  transform: translateY(-4px) scale(1.06);
+  filter: brightness(1.08);
+}
+
+@media (max-width: 560px) {
+  .footer-links {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+  }
+
+  .footer-social {
+    flex-direction: row;
+    justify-content: center;
+    gap: 17px;
+  }
+
+  .footer-social .social-icon {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+  }
+
+  .footer-social .social-icon img {
+    width: 27px;
+    height: 27px;
+  }
+}
